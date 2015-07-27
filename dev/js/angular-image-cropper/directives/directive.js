@@ -336,10 +336,12 @@
                 var thisImage = this;
                 setWrapper();
                 hardwareAccelerate(gImage);
-                if (thisImage.naturalWidth < options.width || thisImage.naturalHeight < options.height || options.fitOnInit)
+                if (thisImage.naturalWidth < options.width || thisImage.naturalHeight < options.height || options.fitOnInit) {
                     fit();
-                else
                     center();
+                } else {
+                    center();
+                }
                 element.find('img').on(events.start, start);
                 getCroppedImage();
 
