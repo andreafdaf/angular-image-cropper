@@ -31,11 +31,11 @@
                 '<img ng-src="{{image}}">',
                 '</div></div></div>',
                 '<div id="controls" ng-if="showControls">',
-                '<button type="button" ng-click="rotateLeft()" class="{{controls.rotateLeft.className}}" title="{{controls.rotateLeft.className}}" id="{{controls.rotateLeft.id}}"> &lt; </button>',
-                '<button type="button" ng-click="zoomOut()" class="{{controls.zoomOut.className}}" title="{{controls.zoomOut.className}}" id="{{controls.zoomOut.id}}"> - </button>',
-                '<button type="button" ng-click="fit()" class="{{controls.fitImage.className}}" title="{{controls.fitImage.className}}" id="{{controls.fitImage.id}}"> [ ] </button>',
-                '<button type="button" ng-click="zoomIn()" class="{{controls.zoomIn.className}}" title="{{controls.zoomIn.className}}" id="{{controls.zoomIn.id}}"> + </button>',
-                '<button type="button" ng-click="rotateRight()" class="{{controls.rotateRight.className}}" title="{{controls.rotateRight.className}}" id="{{controls.rotateRight.id}}"> &gt; </button>',
+                '<button type="button" ng-click="rotateLeft()" class="{{controls.rotateLeft.className}}" title="{{controls.rotateLeft.className}}" id="{{controls.rotateLeft.id}}" ng-bind="controls.rotateLeft.content"></button>',
+                '<button type="button" ng-click="zoomOut()" class="{{controls.zoomOut.className}}" title="{{controls.zoomOut.className}}" id="{{controls.zoomOut.id}}" ng-bind="controls.zoomOut.content"></button>',
+                '<button type="button" ng-click="fit()" class="{{controls.fitImage.className}}" title="{{controls.fitImage.className}}" id="{{controls.fitImage.id}}" ng-bind="controls.fitImage.content"></button>',
+                '<button type="button" ng-click="zoomIn()" class="{{controls.zoomIn.className}}" title="{{controls.zoomIn.className}}" id="{{controls.zoomIn.id}}" ng-bind="controls.zoomIn.content"></button>',
+                '<button type="button" ng-click="rotateRight()" class="{{controls.rotateRight.className}}" title="{{controls.rotateRight.className}}" id="{{controls.rotateRight.id}}" ng-bind="controls.rotateRight.content"></button>',
                 '</div>'].join(''),
             'link': link
         };
@@ -52,15 +52,19 @@
             /**
              * Merge default with attributes given
              */
-            var controls = scope.controls;
-            if(controls) {
-                controls.rotateLeft = controls.rotateLeft || defaultConfig.controls.rotateLeft;
-                controls.zoomOut = controls.zoomOut || defaultConfig.controls.zoomOut;
-                controls.fitImage = controls.fitImage || defaultConfig.controls.fitImage;
-                controls.zoomIn = controls.zoomIn || defaultConfig.controls.zoomIn;
-                controls.rotateRight = controls.rotateRight || defaultConfig.controls.rotateRight;
+            if(scope.controls) {
+                for(var key in defaultConfig.controls) {
+                    if(scope.controls.hasOwnProperty(key)) {
+                        scope.controls[key].title = scope.controls[key].title || defaultConfig.controls[key].title;
+                        scope.controls[key].className = scope.controls[key].className || defaultConfig.controls[key].className;
+                        scope.controls[key].id = scope.controls[key].id || defaultConfig.controls[key].id;
+                        scope.controls[key].content = scope.controls[key].content || defaultConfig.controls[key].content;
+                    } else {
+                        scope.controls[key] = scope.controls[key];
+                    }
+                }
             } else {
-                controls = defaultConfig.controls;
+                scope.controls = defaultConfig.controls;
             }
             var options = {
                 width: Number(scope.destWidth) || defaultConfig.width,
@@ -68,33 +72,6 @@
                 zoomStep: Number(scope.zoomStep) || defaultConfig.zoomStep,
                 init: scope.init || defaultConfig.init,
                 fitOnInit: scope.fitOnInit || defaultConfig.fitOnInit,
-                controls: {
-                    rotateLeft: {
-                        title: controls.rotateLeft.title || defaultConfig.controls.rotateLeft.title,
-                        className: controls.rotateLeft.className || defaultConfig.controls.rotateLeft.className,
-                        id: controls.rotateLeft.id || defaultConfig.controls.rotateLeft.id
-                    },
-                    zoomOut: {
-                        title: controls.zoomOut.title || defaultConfig.controls.zoomOut.title,
-                        className: controls.zoomOut.className || defaultConfig.controls.zoomOut.className,
-                        id: controls.zoomOut.id || defaultConfig.controls.zoomOut.id
-                    },
-                    fitImage: {
-                        title: controls.fitImage.title || defaultConfig.controls.fitImage.title,
-                        className: controls.fitImage.className || defaultConfig.controls.fitImage.className,
-                        id: controls.fitImage.id || defaultConfig.controls.fitImage.id
-                    },
-                    zoomIn: {
-                        title: controls.zoomIn.title || defaultConfig.controls.zoomIn.title,
-                        className: controls.zoomIn.className || defaultConfig.controls.zoomIn.className,
-                        id: controls.zoomIn.id || defaultConfig.controls.zoomIn.id
-                    },
-                    rotateRight: {
-                        title: controls.rotateRight.title || defaultConfig.controls.rotateRight.title,
-                        className: controls.rotateRight.className || defaultConfig.controls.rotateRight.className,
-                        id: controls.rotateRight.id || defaultConfig.controls.rotateRight.id
-                    }
-                }
             };
 
             var zoomInFactor = 1 + options.zoomStep;

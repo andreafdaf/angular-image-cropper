@@ -15,7 +15,7 @@
                     'title': 'Rotate Left',
                     'className': '',
                     'id': '',
-                    'content': ' &lt; '
+                    'content': ' < '
                 },
                 'zoomOut': {
                     'title': 'Zoom Out',
@@ -39,7 +39,7 @@
                     'title': 'Rotate Right',
                     'className': '',
                     'id': '',
-                    'content': ' &gt; '
+                    'content': ' > '
                 }
             }
     });
