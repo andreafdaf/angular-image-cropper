@@ -31,11 +31,11 @@
                 '<img ng-src="{{image}}">',
                 '</div></div></div>',
                 '<div id="controls" ng-if="showControls">',
-                '<button type="button" ng-click="rotateLeft()" class="{{controls.rotateLeft.title}}" title="{{controls.rotateLeft.className}}" id="{{controls.rotateLeft.id}}" ng-bind="controls.rotateLeft.content"></button>',
-                '<button type="button" ng-click="zoomOut()" class="{{controls.zoomOut.title}}" title="{{controls.zoomOut.className}}" id="{{controls.zoomOut.id}}" ng-bind="controls.zoomOut.content"></button>',
-                '<button type="button" ng-click="fit()" class="{{controls.fitImage.title}}" title="{{controls.fitImage.className}}" id="{{controls.fitImage.id}}" ng-bind="controls.fitImage.content"></button>',
-                '<button type="button" ng-click="zoomIn()" class="{{controls.zoomIn.title}}" title="{{controls.zoomIn.className}}" id="{{controls.zoomIn.id}}" ng-bind="controls.zoomIn.content"></button>',
-                '<button type="button" ng-click="rotateRight()" class="{{controls.rotateRight.title}}" title="{{controls.rotateRight.className}}" id="{{controls.rotateRight.id}}" ng-bind="controls.rotateRight.content"></button>',
+                '<button type="button" ng-click="rotateLeft()" title="{{controls.rotateLeft.title}}" class="{{controls.rotateLeft.className}}" id="{{controls.rotateLeft.id}}" ng-bind="controls.rotateLeft.content"></button>',
+                '<button type="button" ng-click="zoomOut()" title="{{controls.zoomOut.title}}" class="{{controls.zoomOut.className}}" id="{{controls.zoomOut.id}}" ng-bind="controls.zoomOut.content"></button>',
+                '<button type="button" ng-click="fit()" title="{{controls.fitImage.title}}" class="{{controls.fitImage.className}}" id="{{controls.fitImage.id}}" ng-bind="controls.fitImage.content"></button>',
+                '<button type="button" ng-click="zoomIn()" title="{{controls.zoomIn.title}}" class="{{controls.zoomIn.className}}" id="{{controls.zoomIn.id}}" ng-bind="controls.zoomIn.content"></button>',
+                '<button type="button" ng-click="rotateRight()" title="{{controls.rotateRight.title}}" class="{{controls.rotateRight.className}}" id="{{controls.rotateRight.id}}" ng-bind="controls.rotateRight.content"></button>',
                 '</div>'].join(''),
             'link': link
         };
